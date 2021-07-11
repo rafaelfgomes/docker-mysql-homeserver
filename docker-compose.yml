@@ -2,7 +2,7 @@ version: '3.1'
 
 services: 
     image: "${DOCKER_IMAGE}"
-    container_name: mysql_server
+    container_name: mysql-homeserver
     volumes: 
         - data:/var/lib/mysql
         - ./configs:/etc/mysql/conf.d
@@ -15,4 +15,5 @@ services:
         MYSQL_PASSWORD: "${MYSQL_USER_PASSWORD}"
 
 volumes: 
-    data:
+    server-data:
+        driver: local
