@@ -1,18 +1,19 @@
 version: '3.1'
 
-services: 
-    image: "${DOCKER_IMAGE}"
-    container_name: mysql-homeserver
-    volumes: 
-        - data:/var/lib/mysql
-        - ./configs:/etc/mysql/conf.d
-    command: --default-authentication-plugin=mysql_native_password
-    restart: always
-    environment:
-        MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-        MYSQL_DATABASE: "${MYSQL_DATABASE}"
-        MYSQL_USER: "${MYSQL_USER}"
-        MYSQL_PASSWORD: "${MYSQL_USER_PASSWORD}"
+services:
+    mysql:
+        image: "${DOCKER_IMAGE}"
+        container_name: mysql-homeserver
+        volumes: 
+            - server-data:/var/lib/mysql
+            - ./configs:/etc/mysql/conf.d
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+            MYSQL_DATABASE: "${MYSQL_DATABASE}"
+            MYSQL_USER: "${MYSQL_USER}"
+            MYSQL_PASSWORD: "${MYSQL_USER_PASSWORD}"
 
 volumes: 
     server-data:
